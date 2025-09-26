@@ -23,7 +23,7 @@
                     <h3 class="text-xl font-semibold text-mcd-dark mb-2">{{ $product->name }}</h3>
                     <p class="text-gray-600 mb-4">{{ Str::limit($product->description, 100) }}</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-2xl font-bold text-mcd-red">Rp {{ number_format($product->price * 15000, 0, ',', '.') }}</span>
+                        <span class="text-2xl font-bold text-mcd-red">{{ $product->prices }}</span>
                         @auth
                             @if(Auth::user()->isCustomer())
                                 <form action="{{ route('cart.add', $product) }}" method="POST">

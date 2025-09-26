@@ -29,7 +29,7 @@
                             <td class="py-3 px-4">{{ $order->user->name }}</td>
                             @endif
                             <td class="py-3 px-4">{{ $order->created_at->format('M d, Y') }}</td>
-                            <td class="py-3 px-4">Rp {{ number_format($order->total_amount * 15000, 0, ',', '.') }}</td>
+                            <td class="py-3 px-4">{{ $order->total_amount }}</td>
                             <td class="py-3 px-4">
                                 <span class="px-2 py-1 rounded-full text-xs 
                                     @if($order->status == 'completed') bg-green-100 text-green-800
@@ -55,6 +55,7 @@
             <a href="{{ route('products.index') }}" class="btn-mcd btn-mcd-yellow">Start Shopping</a>
         </div>
         @endif
+        
         @if(Auth::check() && Auth::user()->isAdmin())
         <div class="mb-6">
             <a style="margin-top:20px; color:white;"href="{{ route('admin.dashboard') }}" class="btn-mcd bg-mcd-dark text-center">← Back</a>

@@ -21,12 +21,12 @@
                 </div>
                 
                 <div>
-                    <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-                    <input type="number" step="0.01" name="price" id="price" value="{{ old('price', $product->price ?? '') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-mcd-red focus:ring focus:ring-mcd-red focus:ring-opacity-50" required>
-                    @error('price')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
+    <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+    <input type="number" name="price" id="price" value="{{ old('price', isset($product) ? $product->price : '') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-mcd-red focus:ring focus:ring-mcd-red focus:ring-opacity-50" required>
+    @error('price')
+        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+    @enderror
+</div>
                 
                 <div>
                     <label for="category" class="block text-sm font-medium text-gray-700">Category</label>

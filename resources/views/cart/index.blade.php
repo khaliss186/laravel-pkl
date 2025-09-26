@@ -16,7 +16,6 @@
                                 <th class="text-left py-2">Price</th>
                                 <th class="text-left py-2">Quantity</th>
                                 <th class="text-left py-2">Total</th>
-                                <!-- <th class="text-left py-2">Actions</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -30,23 +29,15 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="py-4">Rp {{ number_format($item['price'] * 15000, 0, ',', '.') }}</td>
+                                <td class="py-4">Rp.{{ $item['price'] }}</td>
                                 <td class="py-4">
                                     <form action="{{ route('cart.update', $item['id']) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" class="w-16 rounded border-gray-300">
-                                        <!-- <button type="submit" class="ml-2 text-sm text-blue-600">Update</button> -->
                                     </form>
                                 </td>
-                               <td class="py-4">Rp {{ number_format($item['price'] * 15000, 0, ',', '.') }}</td>
-                                <!-- <td class="py-4">
-                                    <form action="{{ route('cart.remove', $item['id']) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-800">Remove</button>
-                                    </form>
-                                </td> -->
+                                <td class="py-4">Rp.{{ $item['price'] * $item['quantity'] }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -55,7 +46,7 @@
                 
                 <div class="mt-6 border-t pt-6">
                     <div class="flex justify-between items-center">
-                       <h3 class="text-xl font-semibold">Total: Rp {{ number_format($total * 15000, 0, ',', '.') }}</h3>
+                        <h3 class="text-xl font-semibold">Total:  Rp.{{ $total }}</h3>
                         <form action="{{ route('cart.checkout') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn-mcd btn-mcd-red text-lg px-6 py-3">Checkout</button>

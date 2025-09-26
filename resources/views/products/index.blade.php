@@ -19,18 +19,18 @@
                     <h3 class="text-xl font-semibold text-mcd-dark mb-2">{{ $product->name }}</h3>
                     <p class="text-gray-600 mb-4">{{ $product->description }}</p>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-2xl font-bold text-mcd-red">Rp {{ number_format($product->price * 15000, 0, ',', '.') }}</span>
+                        <span class="text-2xl font-bold text-mcd-red">Rp.{{ $product->price }}</span>
                         <span class="px-3 py-1 bg-mcd-gray rounded-full text-sm">{{ ucfirst($product->category) }}</span>
                     </div>
                     
                     <div class="flex justify-between">
                         <a href="{{ route('products.show', $product) }}" class="btn-mcd btn-mcd-red">View Details</a>
                         @if(Auth::check() && Auth::user()->isAdmin())
-                        <a href="{{ route('products.edit', $product) }}" class="btn-mcd btn-mcd-red">Edit</a>
+                        <a href="{{ route('products.edit', $product) }}" class="btn-mcd btn-mcd-yellow">Edit</a>
                         <form action="{{ route('products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-mcd btn-mcd-red">Delete</button>
+                            <button type="submit" class="btn-mcd bg-red-600 hover:bg-red-700">Delete</button>
                         </form>
                         @endif
                         
@@ -45,12 +45,11 @@
                             <a href="{{ route('login') }}" class="btn-mcd btn-mcd-yellow">Login to Order</a>
                         @endauth
                     </div>
-                    
-                    
                 </div>
             </div>
             @endforeach
         </div>
+        
         @if(Auth::check() && Auth::user()->isAdmin())
         <div class="mb-6">
             <a href="{{ route('admin.dashboard') }}" class="btn-mcd bg-mcd-dark text-center" style="margin-top:20px; color:white;">← Back</a>

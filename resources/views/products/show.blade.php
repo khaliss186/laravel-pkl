@@ -10,7 +10,7 @@
                 <h1 class="text-3xl font-bold text-mcd-dark mb-2">{{ $product->name }}</h1>
                 
                 <div class="flex items-center mb-4">
-                    <span class="text-2xl font-bold text-mcd-red">Rp {{ number_format($product->price * 15000, 0, ',', '.') }}</span>
+                    <span class="text-2xl font-bold text-mcd-red">Rp.{{ $product->price }}</span>
                     <span class="ml-4 px-3 py-1 bg-mcd-gray rounded-full text-sm">{{ ucfirst($product->category) }}</span>
                     <span class="ml-4 px-3 py-1 rounded-full text-sm {{ $product->is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
                         {{ $product->is_active ? 'Available' : 'Not Available' }}

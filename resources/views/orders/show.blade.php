@@ -21,7 +21,7 @@
                                 {{ ucfirst($order->status) }}
                             </span>
                         </p>
-                        <p><strong>Total Amount:</strong> Rp {{ number_format($order->total_amount * 15000, 0, ',', '.') }}</p>
+                        <p><strong>Total Amount:</strong> Rp.{{ $order->total_amount }}</p>
                     </div>
                     
                     @if(Auth::user()->isAdmin())
@@ -72,16 +72,16 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="py-3 px-4">Rp {{ number_format($item->price * 15000, 0, ',', '.') }}</td>
-<td class="py-3 px-4">Rp {{ number_format($item->total * 15000, 0, ',', '.') }}</td>
-<td class="py-3 px-4 font-semibold">Rp {{ number_format($order->total_amount * 15000, 0, ',', '.') }}</td>
+                                <td class="py-3 px-4">Rp.{{ $item->price }}</td>
+                                <td class="py-3 px-4">Rp.{{ $item->quantity }}</td>
+                                <td class="py-3 px-4">Rp.{{ $item->total }}</td>
                             </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="3" class="text-right py-3 px-4 font-semibold">Total:</td>
-                                <td class="py-3 px-4 font-semibold">${{ number_format($order->total_amount, 2) }}</td>
+                                <td class="py-3 px-4 font-semibold">Rp.{{ $order->total_amount }}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -92,13 +92,6 @@
         <div class="flex justify-between">
             <a href="{{ route('orders.index') }}" class="btn-mcd btn-mcd-yellow">&larr; Back to Orders</a>
             
-            @if(Auth::user()->isCustomer() && $order->status == 'pending')
-            <form action="{{ route('orders.cancel', $order) }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this order?')">
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="btn-mcd bg-red-600 hover:bg-red-700">Cancel Order</button>
-            </form>
-            @endif
         </div>
     </div>
 </div>
